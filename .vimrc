@@ -1,66 +1,74 @@
 set nocompatible              " be iMproved, required
 filetype off                  " required
 
-" set the runtime path to include Vundle and initialize
+" Set the runtime path to include Vundle and initialize
 set rtp+=~/.vim/bundle/Vundle.vim
 
 call vundle#begin()
 
+" Plugin manager
 Plugin 'VundleVim/Vundle.vim'
 
-"Highlighting:
+" Highlighting:
 Plugin 'pangloss/vim-javascript'
 
-"Snippets:
+" Snippets:
 Plugin 'MarcWeber/vim-addon-mw-utils'
 Plugin 'tomtom/tlib_vim'
 Plugin 'garbas/vim-snipmate'
 Plugin 'grvcoelho/vim-javascript-snippets'
 
-"Lint:
+" Lint:
 Plugin 'w0rp/ale'
 
-"Autocomplete:
+" Autocomplete:
 Plugin 'Valloric/YouCompleteMe'
 
-"File explorer:
+" File explorer:
 Plugin 'scrooloose/nerdtree'
 
-"System clipboard:
+" System clipboard:
 Plugin 'christoomey/vim-system-copy'
 
-call vundle#end()            " required
+" Find file by text:
+Plugin 'dyng/ctrlsf.vim'
+
+" Find file by name:
+set rtp+=~/.fzf
+Plugin 'junegunn/fzf.vim'
+
+call vundle#end()
 
 
-"""vim configuration:
-"Indentation
+" Vim configuration:
+" Indentation
 filetype plugin indent on
 set tabstop=2
 set shiftwidth=2
 set expandtab
 
-"Line numbers:
+" Line numbers:
 set number
 
-"No wrap:
+" No wrap:
 set nowrap
 
 
-"""Plugins configuration:
-"Snippets:
+" Plugins configuration:
+" Snippets:
 imap <C-J> <esc>a<Plug>snipMateNextOrTrigger
 smap <C-J> <Plug>snipMateNextOrTrigger
 
-"Lint:
+" Lint:
 let g:ale_echo_msg_error_str = 'E'
 let g:ale_echo_msg_warning_str = 'W'
 let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
 
-"Code formatter:
+" Code formatter:
 let b:ale_fixers = ['eslint']
 let g:ale_fix_on_save = 1
 
-"File explorer:
+" File explorer:
 " NERDTress Ctrl+n
 map <C-n> :NERDTreeToggle<CR>
 " NERDTress File highlighting
@@ -81,3 +89,15 @@ call NERDTreeHighlightFile('css', 'cyan', 'none', 'cyan', '#151515')
 call NERDTreeHighlightFile('coffee', 'Red', 'none', 'red', '#151515')
 call NERDTreeHighlightFile('js', 'Red', 'none', '#ffa500', '#151515')
 call NERDTreeHighlightFile('php', 'Magenta', 'none', '#ff00ff', '#151515')
+
+" ctrlsf (find file by text)
+" O - always leave CtrlSF window opening.
+" <C-O> - open file in a horizontal split window.
+" <C-J> - Move cursor to next match.
+" <C-K> - Move cursor to previous match.
+nmap     <C-F> <Plug>CtrlSFPrompt
+vmap     <C-F> <Plug>CtrlSFVwordPath
+
+
+" vim.fzf
+map <C-b> :Files<CR>
