@@ -99,5 +99,5 @@ nmap     <C-F> <Plug>CtrlSFPrompt
 vmap     <C-F> <Plug>CtrlSFVwordPath
 
 
-" vim.fzf
+" vim.fzf (find file by filename)
 map <C-b> :Files<CR>
